@@ -1,0 +1,27 @@
+* {
+    background: rgb(15, 15, 68);
+    color: white;
+}
+
+table {
+    width: 70%;
+    margin: auto;
+    border-collapse: collapse;
+    border-right: none;
+    border-left: none;
+}
+
+td {
+    border: none;
+}
+
+.info {
+    display: flex;
+    
+}
+
+.city, .temp, .main {
+    width: 70%;
+    margin: auto;
+}
+

@@ -1,0 +1,30 @@
+.list table{
+    margin-top: 70px;
+    margin: 0 auto;
+    border-collapse: collapse;
+
+}
+
+.content h2 {
+    margin-top: 70px;
+}
+
+table, th, td {
+    border: solid rgb(160, 159, 159);
+    border-width: thin;
+}
+
+th, td {
+    padding: 10px;
+    width: 80px;
+}
+
+.search {
+    margin: 30px;
+}
+
+input {
+    border-radius: 10px;
+    border: solid rgb(160, 159, 159);
+    border-width: thin;
+}
