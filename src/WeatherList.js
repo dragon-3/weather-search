@@ -9,13 +9,15 @@ import Search from "./Search";
 import {useState, useEffect} from "react"
 import "./Search.css"
 import Clear from "./assets/Clear.jpg"
+import Rain from "./assets/Rain.jpg"
+import Clouds from "./assets/Clouds.jpg"
 
 function WeatherList() {
 
     const [location, setLocation] = useState('')
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=e7946f7765931c840a35548ad3fa50c4`
     const [data, setData] = useState([])
-    const [display, setDisplay] = useState(true)
+    const [display, setDisplay] = useState(false)
     const [weather, setWeather] = useState('')
 
     useEffect(() => {
@@ -42,16 +44,25 @@ function WeatherList() {
                 );
                 setWeather(data.weather[0].main);
             })
+            setDisplay(true)
         }
     }
 
-    const icons = [Clear];
+    const icons = [Clear, Rain, Clouds];
 
     const getIcon = (weather) => {
         switch(weather) {
             case "Clear": 
-            return icons[0]
-            break;
+                return icons[0]
+                break;
+
+            case "Rain":
+                return icons[1]
+                break;
+
+            case "Clouds":
+                return icons[2]
+                break;
         }
     }
     
@@ -70,9 +81,11 @@ function WeatherList() {
                     <div className="location">
                         <h1>{data.name}</h1>
                     </div>
-                    <div className="image">
-                        <img src={getIcon(weather)} alt="" />
-                    </div>
+                    {display? 
+                        <div className="image">
+                            <img src={getIcon(weather)} alt="" />
+                        </div>: null
+                    }
                     <div className="middle">
                         <div className="faren">
                             {data.main ? <h1>{data.main.temp.toFixed()}F</h1>: null}
@@ -81,8 +94,6 @@ function WeatherList() {
                                 {data.weather? <h1> {data.weather[0].main}</h1>: null }
                         </div>
                     </div>
-                    
-                        
                 </div>
 
 
