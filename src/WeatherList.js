@@ -19,6 +19,8 @@ function WeatherList() {
     const [data, setData] = useState([])
     const [display, setDisplay] = useState(false)
     const [weather, setWeather] = useState('')
+    const [error, setError] = useState("")
+    const [displayError, setDisplayError] = useState(false)
 
     useEffect(() => {
         fetch(url)
@@ -43,6 +45,13 @@ function WeatherList() {
                     data
                 );
                 setWeather(data.weather[0].main);
+                setDisplayError(false)
+
+            })
+            .catch(err => {
+                console.log(err)
+                setError("Please enter valid city name.")
+                setDisplayError(true)
             })
             setDisplay(true)
         }
@@ -72,10 +81,12 @@ function WeatherList() {
             <div className="content">
                 <h2>Weather.com</h2>
                 
-
                 <div className="searchBar">
                     <input type="text" placeholder="Search" onChange={event => setLocation(event.target.value)} onKeyPress={SearchLocation} />
                 </div>
+
+                {displayError? <div className="alert alert-success">{error}</div>: null}
+
 
                 <div className="top">
                     <div className="location">
